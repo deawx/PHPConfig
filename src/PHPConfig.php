@@ -8,7 +8,7 @@
  * @author     Muhammet ŞAFAK <info@muhammetsafak.com.tr>
  * @copyright  Copyright © 2021 PHPConfig
  * @license    http://www.gnu.org/licenses/gpl-3.0.txt  GNU GPL 3.0
- * @version    1.0
+ * @version    1.1
  * @link       https://www.muhammetsafak.com.tr
  */
 

@@ -8,7 +8,7 @@
  * @author     Muhammet ŞAFAK <info@muhammetsafak.com.tr>
  * @copyright  Copyright © 2021 PHPConfig
  * @license    http://www.gnu.org/licenses/gpl-3.0.txt  GNU GPL 3.0
- * @version    1.0
+ * @version    1.1
  * @link       https://www.muhammetsafak.com.tr
  */
 
@@ -147,6 +147,69 @@ class Config
         }
         $this->setError("The ".$path." directory could not be found.");
         return false;
+    }
+
+    /**
+     * Introduces configurations in an .env file to the system.
+     * 
+     * @param string $path The path to the .env file or the directory hosting the .env file.
+     * @return self
+     */
+    public function setENV(string $path): self
+    {
+        if(is_dir($path)){
+            $path = rtrim($path, '/') . '/.env' ;
+        }
+        if(is_file($path)){
+            $this->envFileLoad($path);
+        }else{
+            $this->setError(".env file not found!");
+        }
+        
+        return $this;
+    }
+
+    /**
+     * Gets an env value.
+     * 
+     * @param string $key The key to the desired env value.
+     * @param $default_value The value to return if the value for the key is not found.
+     * @return mixed If the env with the desired key is found, it returns its value. If not found, `$default_value` is returned.
+     */
+    public function env(string $key, $default_value = false)
+    {
+        if(isset($_ENV[$key])){
+            return $_ENV[$key];
+        }
+        return $default_value;
+    }
+
+    /**
+     * It reads the .env file and adds the configurations.
+     * 
+     * @see \PHPConfig\Config::setENV()
+     * @param string $path
+     * @return void
+     */
+    protected function envFileLoad(string $path): void
+    {
+        $lines = file($path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+
+            if (strpos(trim($line), '#') === 0) {
+                continue;
+            }
+
+            list($key, $value) = explode('=', $line, 2);
+            $key = trim($key);
+            $value = trim(trim($value), '"');
+
+            if (!array_key_exists($key, $_SERVER) && !array_key_exists($key, $_ENV)) {
+                putenv(sprintf('%s=%s', $key, $value));
+                $_ENV[$key] = $value;
+                $_SERVER[$key] = $value;
+            }
+        }
     }
 
     /**

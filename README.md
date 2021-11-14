@@ -189,6 +189,48 @@ if(!empty($errors)){
 }
 ```
 
+### .env
+
+#### `setENV()`
+
+Introduces configurations in an .env file to the system.
+
+```php
+$config->setENV("/home/www/safak/"); # /home/www/safak/.env
+
+// or
+
+$config->setENV("/home/www/safak/.env");
+
+```
+
+#### `env()`
+
+It is used to get ENV values. 
+
+**Note :** You can also use the `$_ENV` global or the `getenv()` function instead.
+
+Example `.env` file :
+
+```
+BASE_URL = "http://www.google.com.tr"
+```
+
+```php
+$config = new \PHPConfig\PHPConfig();
+
+$config->setENV(__DIR__);
+
+echo $config->env("BASE_URL");
+// Output : http://www.google.com.tr
+
+echo $config->env("SITE_URL");
+// false
+
+echo $config->env("DB_HOST", "localhost");
+// Output : localhost
+```
+
 ***
 
 ## Classes
