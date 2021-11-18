@@ -119,7 +119,7 @@ class Config
      * @param string $path The full file path of the directory where the files are located.
      * @return bool Returns `true` if one or more files are imported, `false` otherwise.
      */
-    public function setDir($name = null, string $path): bool
+    public function setDir($name = null, string $path = __DIR__): bool
     {
         if(is_dir($path)){
             $files = glob(rtrim($path, '/') . '/*.php');
@@ -219,7 +219,7 @@ class Config
      * @param string $path The full file path of the file to be imported.
      * @return bool Returns `true` if the file is imported, `false` otherwise.
      */
-    public function setFile($name = null, string $path): bool
+    public function setFile($name = null, string $path = __DIR__): bool
     {
         if(is_file($path)){
             $config = $this->loadFile($path);
