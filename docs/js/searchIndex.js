@@ -71,6 +71,21 @@ Search.appendIndex(
             "summary": "Imports\u0020arrays\u0020returned\u0020by\u0020php\u0020files\u0020in\u0020the\u0020specified\u0020directory.",
             "url": "classes/PHPConfig-Config.html#method_setDir"
         },                {
+            "fqsen": "\\PHPConfig\\Config\u003A\u003AsetENV\u0028\u0029",
+            "name": "setENV",
+            "summary": "Introduces\u0020configurations\u0020in\u0020an\u0020.env\u0020file\u0020to\u0020the\u0020system.",
+            "url": "classes/PHPConfig-Config.html#method_setENV"
+        },                {
+            "fqsen": "\\PHPConfig\\Config\u003A\u003Aenv\u0028\u0029",
+            "name": "env",
+            "summary": "Gets\u0020an\u0020env\u0020value.",
+            "url": "classes/PHPConfig-Config.html#method_env"
+        },                {
+            "fqsen": "\\PHPConfig\\Config\u003A\u003AenvFileLoad\u0028\u0029",
+            "name": "envFileLoad",
+            "summary": "It\u0020reads\u0020the\u0020.env\u0020file\u0020and\u0020adds\u0020the\u0020configurations.",
+            "url": "classes/PHPConfig-Config.html#method_envFileLoad"
+        },                {
             "fqsen": "\\PHPConfig\\Config\u003A\u003AsetFile\u0028\u0029",
             "name": "setFile",
             "summary": "Imports\u0020the\u0020array\u0020returned\u0020by\u0020the\u0020specified\u0020php\u0020file.",

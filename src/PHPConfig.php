@@ -18,6 +18,17 @@ namespace PHPConfig;
  * Intermediate class to use the methods of the \PHPConfig\Config class as static.
  * 
  * @see \PHPConfig\Config
+ * @method static \PHPConfig\Config delimiter(string $delimiter = '.')
+ * @method static \PHPConfig\Config tolower(bool $tolower = false)
+ * @method static void setArray(?string $name = null, array $configs = [])
+ * @method static bool setDir(?string $name = null, string $path = __DIR__)
+ * @method static \PHPConfig\Config setENV(string $path)
+ * @method static mixed env(string $key, $default_value = false)
+ * @method static bool setFile(?string $name = null, string $path = __DIR__)
+ * @method static bool setClass(string|object $class): bool
+ * @method static \PHPConfig\Config set(string $key, $value)
+ * @method static mixed get(?string $key = null, $default_value = false)
+ * @method static array errors()
  */
 class PHPConfig 
 {
@@ -44,5 +55,4 @@ class PHPConfig
         return $this->lib->__get($name);
     }
 
-   
 }
