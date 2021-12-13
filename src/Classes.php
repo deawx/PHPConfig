@@ -4,11 +4,10 @@
  *
  * This file is part of PHPConfig.
  *
- * @package    Classes.php @ 2021-11-09T11:47:02.809Z
  * @author     Muhammet ŞAFAK <info@muhammetsafak.com.tr>
  * @copyright  Copyright © 2021 PHPConfig
  * @license    http://www.gnu.org/licenses/gpl-3.0.txt  GNU GPL 3.0
- * @version    1.1
+ * @version    1.1.1
  * @link       https://www.muhammetsafak.com.tr
  */
 
@@ -48,10 +47,10 @@ class Classes
      */
     protected final function phpconfig(): void
     {
-        $config = get_class_vars(get_class($this));
+        $config = \get_class_vars(\get_class($this));
         
-        unset($config['phpconfig_configs']);
-        unset($config['phpconfig_delimiter']);
+        \unset($config['phpconfig_configs']);
+        \unset($config['phpconfig_delimiter']);
 
         $this->phpconfig_configs = $config;
     }
@@ -66,10 +65,10 @@ class Classes
     public function set(string $key, $value): self
     {
         if(strpos($key, $this->phpconfig_delimiter)){
-            $keys = explode($this->phpconfig_delimiter, $key);
+            $keys = \explode($this->phpconfig_delimiter, $key);
             $id = $keys[0];
-            array_shift($keys);
-            $key = implode($this->phpconfig_delimiter, $keys);
+            \array_shift($keys);
+            $key = \implode($this->phpconfig_delimiter, $keys);
             if(!isset($this->phpconfig_configs[$id])){
                 $this->phpconfig_configs[$id] = [];
             }
@@ -90,13 +89,13 @@ class Classes
      */
     public function get(?string $key = null, $default_value = false)
     {
-        if(is_null($key)){
+        if($key === null){
             return $this->phpconfig_configs;
         }
-        $keys = explode($this->phpconfig_delimiter, $key);
+        $keys = \explode($this->phpconfig_delimiter, $key);
         if(isset($this->phpconfig_configs[$keys[0]])){
             $config = $this->phpconfig_configs[$keys[0]];
-            array_shift($keys);
+            \array_shift($keys);
             foreach($keys as $key){
                 if(isset($config[$key])){
                     $config = $config[$key];
@@ -119,17 +118,17 @@ class Classes
      * @param array $config
      * @return array
      */
-    private function multiSubConfigSet($key, $value, $config)
+    private function multiSubConfigSet(string $key, $value, $config)
     {
-        if(strpos($key, $this->phpconfig_delimiter)){
-            $keys = explode($this->phpconfig_delimiter, $key);
+        if(\strpos($key, $this->phpconfig_delimiter)){
+            $keys = \explode($this->phpconfig_delimiter, $key);
             $id = $keys[0];
-            array_shift($keys);
+            \array_shift($keys);
             
             if(!isset($config[$id])){
                 $config[$id] = [];
             }
-            $config[$id] = $this->multiSubConfigSet(implode($this->phpconfig_delimiter, $keys), $value, $config[$id]);
+            $config[$id] = $this->multiSubConfigSet(\implode($this->phpconfig_delimiter, $keys), $value, $config[$id]);
         }else{
             $config[$key] = $value;
         }

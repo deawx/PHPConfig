@@ -4,11 +4,10 @@
  *
  * This file is part of PHPConfig.
  *
- * @package    PHPConfig.php @ 2021-11-09T12:01:42.854Z
  * @author     Muhammet ŞAFAK <info@muhammetsafak.com.tr>
  * @copyright  Copyright © 2021 PHPConfig
  * @license    http://www.gnu.org/licenses/gpl-3.0.txt  GNU GPL 3.0
- * @version    1.1
+ * @version    1.1.1
  * @link       https://www.muhammetsafak.com.tr
  */
 
@@ -33,7 +32,7 @@ namespace PHPConfig;
 class PHPConfig 
 {
 
-    private \PHPConfig\Config $lib;
+    private ?\PHPConfig\Config $lib;
 
     public function __construct()
     {
