@@ -11,6 +11,8 @@
  * @link       https://www.muhammetsafak.com.tr
  */
 
+declare(strict_types=1);
+
 namespace PHPConfig;
 
 /**

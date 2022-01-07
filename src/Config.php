@@ -11,6 +11,8 @@
  * @link       https://www.muhammetsafak.com.tr
  */
 
+declare(strict_types=1);
+
 namespace PHPConfig;
 
 /**
@@ -322,6 +324,9 @@ class Config
                     $config = $config[$key];
                 }else{
                     $config = $default_value;
+                    if(\is_callable($default_value)){
+                        $config = \call_user_func_array($default_value, []);
+                    }
                     break;
                 }
             }
