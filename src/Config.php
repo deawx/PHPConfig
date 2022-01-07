@@ -7,7 +7,7 @@
  * @author     Muhammet ŞAFAK <info@muhammetsafak.com.tr>
  * @copyright  Copyright © 2021 PHPConfig
  * @license    http://www.gnu.org/licenses/gpl-3.0.txt  GNU GPL 3.0
- * @version    1.1.1
+ * @version    1.1.2
  * @link       https://www.muhammetsafak.com.tr
  */
 
@@ -19,7 +19,7 @@ namespace PHPConfig;
 class Config
 {
 
-    private string $version = '1.1.1';
+    private string $version = '1.1.2';
 
     /**
      * @var array $config Array where configurations are kept
@@ -179,7 +179,7 @@ class Config
      * Gets an env value.
      *
      * @param string $key The key to the desired env value.
-     * @param $default_value The value to return if the value for the key is not found.
+     * @param mixed $default_value The value to return if the value for the key is not found.
      * @return mixed If the env with the desired key is found, it returns its value. If not found, `$default_value` is returned.
      */
     public function env(string $key, $default_value = false)

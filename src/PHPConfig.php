@@ -7,7 +7,7 @@
  * @author     Muhammet ŞAFAK <info@muhammetsafak.com.tr>
  * @copyright  Copyright © 2021 PHPConfig
  * @license    http://www.gnu.org/licenses/gpl-3.0.txt  GNU GPL 3.0
- * @version    1.1.1
+ * @version    1.1.2
  * @link       https://www.muhammetsafak.com.tr
  */
 
@@ -32,26 +32,29 @@ namespace PHPConfig;
 class PHPConfig 
 {
 
-    private ?\PHPConfig\Config $lib;
+    private static ?Config $instance = null;
 
-    public function __construct()
+    private static function getInstance(): Config
     {
-        $this->lib = new \PHPConfig\Config();
+        if(self::$instance === null){
+            self::$instance = new Config();
+        }
+        return self::$instance;
     }
 
     public function __call($name, $arguments)
     {
-        return $this->lib->$name(...$arguments);
+        return self::getInstance()->{$name}(...$arguments);
     }
 
     public static function __callStatic($name, $arguments)
     {
-        return (new self())->$name(...$arguments);
+        return self::getInstance()->{$name}(...$arguments);
     }
 
     public function __get($name)
     {
-        return $this->lib->__get($name);
+        return self::getInstance()->__get($name);
     }
 
 }
