@@ -7,7 +7,7 @@
  * @author     Muhammet ŞAFAK <info@muhammetsafak.com.tr>
  * @copyright  Copyright © 2021 PHPConfig
  * @license    http://www.gnu.org/licenses/gpl-3.0.txt  GNU GPL 3.0
- * @version    1.1.2
+ * @version    1.1.3
  * @link       https://www.muhammetsafak.com.tr
  */
 
@@ -186,7 +186,28 @@ class Config
      */
     public function env(string $key, $default_value = false)
     {
-        return $_ENV[$key] ?? $default_value;
+        $getenv = \getenv($key);
+        $data = $_ENV[$key] ?? ($_SERVER[$key] ?? ($getenv === FALSE ? $default_value : $getenv));
+
+        if($data === $default_value){
+            return $data;
+        }
+
+        if(\is_string($data)){
+            $data = \trim($data);
+            switch (\strtolower($data)) {
+                case 'true':
+                    return true;
+                case 'false':
+                    return false;
+                case 'empty':
+                    return '';
+                case 'null':
+                    return null;
+            }
+        }
+
+        return $data;
     }
 
     /**
